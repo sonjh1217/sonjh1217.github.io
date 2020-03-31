@@ -21,8 +21,9 @@ do {
     fatalError("Failure to delete context: \(error)")
 }
   ```
-  ## Search
-  ### Event if the data has it's id, I cannot change or set objectId of core data entity object. So even if you find a object with that kind of id, you need to use predicate
+ ## Search
+  
+ ### Event if the data has it's id, I cannot change or set objectId of core data entity object. So even if you find a object with that kind of id, you need to use predicate
 ```Swift
 let moc = DataController.shared.persistentContainer.viewContext
 let fetchRequest = NSFetchRequest(entityName: String(describing: Gif.self))
