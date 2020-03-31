@@ -5,9 +5,10 @@
 
     
 ## How to initiate core data object without inserting it to the context
-```Swift
+~~~
 let gif = Gif(entity: NSEntityDescription.entity(forEntityName: String(describing: Gif.self), in: DataController.shared.persistentContainer.viewContext)!, insertInto: nil)
-  ```
+~~~
+{: .language-swift}
 ## remove All Data
 ```Swift
 let fetchRequest = NSFetchRequest(entityName: String(describing: Gif.self))
