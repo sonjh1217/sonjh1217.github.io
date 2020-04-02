@@ -1,3 +1,12 @@
+---
+title:  "Core Data Tips"
+
+ categories:
+  - core-data
+tags:
+  - core-data
+  - model
+---
 # Core Data Tips
 
 
