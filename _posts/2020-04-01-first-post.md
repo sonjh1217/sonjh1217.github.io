@@ -1,12 +1,3 @@
----
-layout: post
-title: Core Data
-comments: true
-categories: [View]
-tags: [View]
----
-
-
 # Core Data Tips
 
 
