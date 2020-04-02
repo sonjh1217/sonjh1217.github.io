@@ -1,7 +1,7 @@
 ---
 title:  "Core Data Tips"
 
- categories:
+categories:
   - core-data
 tags:
   - core-data
