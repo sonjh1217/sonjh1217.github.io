@@ -102,3 +102,76 @@ List($scrums) { $scrum in
 
 "$scrum"
 The $ prefix accesses the projectedValue of a wrapped property. The projected value of the scrums binding is another binding.
+
+Source: [https://developer.apple.com/tutorials/app-dev-training/making-classes-observable](https://developer.apple.com/tutorials/app-dev-training/making-classes-observable)
+## Class for $State, Source of Truth
+
+~~~
+@Observable public final class ScrumTimer {
+    public var activeSpeaker = ""
+    public var secondsElapsed = 0
+    public var secondsRemaining = 0
+    // ...
+}
+~~~
+{: .language-swift}
+
+Make the class @Observable. By doing so, all the properties of that class automatically trigger UI updates when they change.
+
+~~~
+struct ParentView: View {
+    @State var scrumTimer = ScrumTimer()
+    // ...
+}
+
+struct ChildView: View {
+    @Bindable var timer: ScrumTimer
+    // ...
+}
+
+struct MeetingView: View {
+    var scrumTimer = ScrumTimer()
+    var body: some View {
+        VStack {
+            ChildView(timer: scrumTimer)
+        }
+    }
+}
+~~~
+{: .language-swift}
+
+Use State and Bindable(instead of Binding)
+
+~~~
+struct ParentView: View {
+    @State var scrumTimer = ScrumTimer()
+    var body: some View {
+        VStack {
+            ChildView()
+                .environment(scrumTimer)
+        }
+    }
+    // ...
+}
+
+
+struct ChildView: View {
+    var body: some View {
+        GrandchildView()
+    }
+}
+
+struct GrandchildView: View {
+    @Environment(ScrumTimer.self) private var timer
+}
+~~~
+{: .language-swift}
+
+
+To share an observable object in a complex view hierarchy, use @Environment. In any descendent of Childview, you can access the timer, even if the intermediate view don't have refereces to the object.
+
+More tutorial: [https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app](https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app) 
+
+
+
+
