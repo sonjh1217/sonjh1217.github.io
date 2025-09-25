@@ -10,7 +10,7 @@ tags:
 
 ## App Memory's Four Segments
 
-![image](./assets/img/post/Memory.drawio.png)
+![image](./assets/img/post/memory.png)
 
 1. **Code**: Machine code compiled from source code
 1. **Data**: Global variables, static variables, static literals
