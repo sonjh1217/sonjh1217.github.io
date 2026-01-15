@@ -143,21 +143,29 @@ final class FeatureFlagManager {
     private var flags: [FeatureFlagKey: Bool]
     private var didFinishLaunch = false
 
-    var refreshProvider: (@Sendable () async throws -> [FeatureFlagKey: Bool])?
+    private var featureFlagRepository: FeatureFlagRepository
 
     init(
         dataSource: FeatureFlagDataSource = UserDefaultsFlagDataSource(),
         queue: DispatchQueueType = DispatchQueue(
             label: "feature.flags.queue",
             attributes: .concurrent
-        )
+        ),
+        featureFlagRepository: FeatureFlagRepository
     ) {
         self.dataSource = dataSource
         self.flags = dataSource.initialFlags()
         self.queue = queue
     }
 
-    // Feature flag logic…
+    ...
+    
+    func refresh() {
+      featureFlagRepository.getFeatureFlags()
+      queue.async {
+        
+      }
+    }
 }
 ~~~
 
@@ -194,21 +202,22 @@ This queue removes async timing from tests and eliminates the need for `wait`.
 ## Example Test Without Waiting
 
 ~~~swift
-@Test func immutableFlag_doesNotChangeAfterLaunch_whenRefreshed() async throws {
+@Test func immutableFlag_doesNotChangeAfterLaunch_whenRefreshed() {
     // Given
     let immutableKey = FeatureFlagKey("immutable_flag", isRuntimeMutable: false)
 
+    let featureFlagRepository = MockFeatureFlagRepository()
+    featureFlagRepository.refreshResponse = [immutableKey: false]
+    
     let manager = FeatureFlagManager(
         dataSource: InMemoryFlagDataSource(initial: [immutableKey: true]),
-        queue: MockDispatchQueue()
+        queue: MockDispatchQueue(),
+        featureFlagRepository: featureFlagRepository
     )
     manager.markDidFinishLaunch()
-    manager.refreshProvider = {
-        [immutableKey: false]
-    }
 
     // When
-    _ = try await manager.refresh()
+    manager.refresh()
 
     // Then
     #expect(manager.isEnabled(immutableKey) == true)
