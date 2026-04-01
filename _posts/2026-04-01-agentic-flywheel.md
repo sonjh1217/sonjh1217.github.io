@@ -114,6 +114,18 @@ I built a small repo-local harness with four layers to make that flywheel concre
 +------------------+
          |
          v
++--------------------------+
+| flywheel-status.sh       |
+| reads current memory     |
++--------------------------+
+         |
+         v
++--------------------------+
+| flywheel-init.sh <slug>  |
+| creates run template     |
++--------------------------+
+         |
+         v
 +------------------+
 | Run record       |
 +------------------+
@@ -185,6 +197,17 @@ If a recommendation is low risk, easy to reverse, and clearly useful across futu
 If not, it should stay in a backlog for later review.
 
 That is the part that starts to look like a real agentic flywheel instead of a pile of notes.
+
+## Two helper scripts I use
+
+To keep the loop lightweight, I added two small scripts:
+
+1. `tools/flywheel-status.sh`
+1. `tools/flywheel-init.sh`
+
+`tools/flywheel-status.sh` prints the current preferences, domain rules, harness rules, and backlog recommendation file list. I use it before substantial tasks so the agent starts with current defaults.
+
+`tools/flywheel-init.sh <slug>` creates a new run folder with the run template. In public repositories, I keep run details local only and avoid committing task-specific notes.
 
 ## A small real example
 
