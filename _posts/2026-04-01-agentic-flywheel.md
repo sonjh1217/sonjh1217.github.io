@@ -114,12 +114,12 @@ I built a small repo-local harness with four layers to make that flywheel concre
 +------------------+
          |
          v
-+--------------------------+
-| flywheel-status.sh       |
-| reads current memory     |
-+--------------------------+
-         |
-         v
++-------------------------------+      +----------------------------------+
+| flywheel-status.sh            |----->| current memory                   |
+| reads current memory          |      | - memory/preferences.md          |
++-------------------------------+      | - memory/domain-rules.md         |
+         |                              | - memory/harness-rules.md        |
+         v                              +----------------------------------+
 +--------------------------+
 | flywheel-init.sh <slug>  |
 | creates run template     |
