@@ -232,6 +232,9 @@ Harness improvement examples:
 1. If lint failures recur, strengthen implementation prompts and pre-commit check gating.
 1. If generated code repeatedly deviates from team style, add explicit templates or pattern references.
 1. If certain rules are always violated, convert them from guidance to hard checks.
+1. If team style/architecture keeps drifting, check whether the project itself has inconsistent patterns across modules. In that case, invest in clearer templates and stronger harness guidance before expecting stable agent output.
+
+This investment takes real effort, and in that sense AI development is not very different from human development: if a project is hard for humans to code consistently, it is also hard for AI to code consistently.
 
 ## What "giving agents information to evaluate the loop" means in iOS
 
