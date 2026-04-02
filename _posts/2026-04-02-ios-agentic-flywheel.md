@@ -78,9 +78,21 @@ And I would treat each as a measurable loop step, not just content generation.
 +-------------------+
           |
           v
-+-------------------+
-| /implementation   |
-+-------------------+
++-----------------------------+
+| Test-case package           |
+| (from design output)        |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Human review of test cases  |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| /implementation             |
+| per TC -> TDD micro-loop    |
++-----------------------------+
           |
           v
 +-------------------+
@@ -191,8 +203,8 @@ Quality checks should include:
 
 ```text
 +-------------------------+
-| implementation unit     |
-| (small requirement)     |
+| test-case unit          |
+| (from /design output)   |
 +-------------------------+
             |
             v
